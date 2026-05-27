@@ -16,8 +16,6 @@
 
 ## Инициализация каталога
 
-Выполнить из директории:
-
 ```bash
 cd Task1Advanced/modules/vm
 terraform init
@@ -37,13 +35,7 @@ terraform init
 
 *Оригинальные файлы не добавлены в git для конфиденциальности, но можно воспользоваться примерами для заполнения для каждого окружения*
 
-- Из директории `/Task1Advanced/modules/vm` для применения конфигурации конкретного окружения `dev`:
-
-```
-terraform apply -var-file="../../envs/dev/terraform.tfvars"
-```
-
-- Из директории `/Task1Advanced/modules/vm` для применения конфигурации конкретного окружения `dev`:
+Для применения конфигурации конкретного окружения `dev`:
 
 ```
 terraform apply -var-file="../../envs/dev/terraform.tfvars"
@@ -51,4 +43,4 @@ terraform apply -var-file="../../envs/dev/terraform.tfvars"
 
 ## Вывод
 
-![result_1.png]()
+![result_1.png](https://github.com/kuznechek/architecture-pro-future_2_0/blob/feature/TaskAdvanced1/src/result_1.png)
