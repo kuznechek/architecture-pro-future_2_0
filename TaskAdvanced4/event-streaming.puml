@@ -1,0 +1,68 @@
+@startuml
+title Event Storming «Будущее 2.0»
+
+left to right direction
+
+rectangle "запрос исследования" as cmdRequest
+rectangle "завершить исследование" as cmdComplete
+rectangle "сформировать диагноз" as cmdDiagnosis
+rectangle "создать счёт" as cmdInvoice
+rectangle "провести оплату" as cmdPayment
+rectangle "выдать кредит" as cmdCredit
+rectangle "ии-анализ" as cmdAI
+
+hexagon "исследование запрошено" as evRequested
+hexagon "исследование завершено" as evCompleted
+hexagon "диагноз сформирован" as evDiagnosis
+hexagon "счёт создан" as evInvoice
+hexagon "оплата проведена" as evPayOk
+hexagon "оплата не удалась" as evPayFail
+hexagon "кредит выдан" as evCredit
+hexagon "ии-анализ выполнен" as evAI
+
+rectangle "Medical" as domMed
+rectangle "Fintech" as domFin
+rectangle "AI" as domAI
+rectangle "Analytics" as domAna
+
+"Doctor" --> cmdRequest
+cmdRequest --> evRequested
+evRequested --> domMed
+
+"Doctor" --> cmdComplete
+cmdComplete --> evCompleted
+evCompleted --> domMed
+
+"Doctor" --> cmdDiagnosis
+cmdDiagnosis --> evDiagnosis
+evDiagnosis --> domMed
+
+evCompleted --> cmdInvoice
+cmdInvoice --> evInvoice
+evInvoice --> domFin
+
+evInvoice --> cmdPayment
+cmdPayment --> evPayOk
+cmdPayment --> evPayFail
+evPayOk --> domFin
+evPayFail --> domFin
+
+evPayFail --> cmdCredit
+cmdCredit --> evCredit
+evCredit --> domFin
+
+evCompleted --> cmdAI
+cmdAI --> evAI
+evAI --> domAI
+evAI --> domMed
+
+evRequested --> domAna
+evCompleted --> domAna
+evDiagnosis --> domAna
+evInvoice --> domAna
+evPayOk --> domAna
+evPayFail --> domAna
+evCredit --> domAna
+evAI --> domAna
+
+@enduml
