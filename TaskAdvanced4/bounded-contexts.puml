@@ -1,0 +1,34 @@
+@startuml
+title Bounded Contexts «Будущее 2.0»
+
+package "Medical Context" {
+    rectangle "Patient" as patient
+    rectangle "MedicalRecord" as record
+    rectangle "Research" as research
+}
+
+package "Fintech Context" {
+    rectangle "LoanAgreement" as loan
+    rectangle "Payment" as payment
+}
+
+package "Analytics Context" {
+    rectangle "DataMart" as datamart
+    rectangle "Report" as report
+}
+
+package "AI Context" {
+    rectangle "AIModel" as model
+}
+
+patient --> research : "запрсо на исследование"
+research --> payment : "завершено"
+patient --> record : "запрос карты"
+research --> model: "запрос на ИИ-анализ"
+model--> record : "результат анализа"
+patient --> datamart : "события"
+research --> datamart : "события"
+payment --> datamart : "события"
+loan --> datamart : "события"
+
+@enduml
